@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://gd6ogrl2flda"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_n2anx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_33e4t"]
+
+[node name="Player" type="CharacterBody3D"]
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("BoxMesh_n2anx")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_33e4t")

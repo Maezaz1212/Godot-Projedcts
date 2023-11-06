@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn7ep4gc73lgc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mlflu"]
+size = Vector3(60, 1, 60)
+
+[sub_resource type="BoxMesh" id="BoxMesh_syugv"]
+size = Vector3(60, 1, 60)
+
+[node name="Main" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_mlflu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_syugv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+editor_description = "THE SUN"
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.352941, 0.537255, 0.576471, 1)
+shadow_enabled = true
