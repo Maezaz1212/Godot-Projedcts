@@ -1,16 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://gd6ogrl2flda"]
+[gd_scene load_steps=5 format=3 uid="uid://gd6ogrl2flda"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_n2anx"]
+[ext_resource type="Script" path="res://player.gd" id="1_og34i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_33e4t"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_n2anx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pkhqs"]
+albedo_color = Color(0, 1, 1, 1)
+
 [node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_og34i")
 
 [node name="Pivot" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
-mesh = SubResource("BoxMesh_n2anx")
-skeleton = NodePath("../..")
+[node name="Camera3D" type="Camera3D" parent="Pivot"]
+transform = Transform3D(-1, 6.18173e-08, -6.18173e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 5, -5.391)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_33e4t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_n2anx")
+surface_material_override/0 = SubResource("StandardMaterial3D_pkhqs")
