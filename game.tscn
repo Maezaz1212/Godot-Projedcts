@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://bn7ep4gc73lgc"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_1qumt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mlflu"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_syugv"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dqi63"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xdsb3"]
+albedo_color = Color(1, 0.333333, 0.505882, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hfbrh"]
+material = SubResource("StandardMaterial3D_xdsb3")
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_1qumt")
+
+[node name="Floor2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0296993, 1, -13.6883)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor2"]
+shape = SubResource("BoxShape3D_mlflu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor2"]
+mesh = SubResource("BoxMesh_syugv")
+
+[node name="Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -10.6665)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+shape = SubResource("BoxShape3D_dqi63")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+mesh = SubResource("BoxMesh_hfbrh")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_mlflu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_syugv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+editor_description = "THE SUN"
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.352941, 0.537255, 0.576471, 1)
+shadow_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://player.tscn")
+spawn_path = NodePath("../EmptyNode")
+spawn_limit = 8
+
+[node name="EmptyNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90084, 0)
